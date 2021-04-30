@@ -1,24 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-full">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Life log</title>
+    <link
+      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
   </head>
-  <body>
-    <div class="stdout">
-      <ul>
-        {{range .}}
-        <li>{{.CreatedAt}} {{.Data}}</li>
-        {{end}}
-      </ul>
-    </div>
-    <div class="stdin">
-      <form method="POST" action="/create">
-        <input type="text" name="log" id="log" />
-        <input type="submit" value="Enter" />
-      </form>
+  <body class="flex justify-center bg-yellow-50 h-full">
+    <div class="w-8/12 flex flex-col justify-between">
+      <div class="stdout bg-white border-l-2 border-b-2 border-r-2 rounded-b-lg p-2 flex-grow mb-4 border-yellow-400 text-gray-600">
+        <ul>
+          {{range .}}
+          <li>{{.CreatedAt}} {{.Data}}</li>
+          {{end}}
+        </ul>
+      </div>
+      <div class="stdin bg-white border-l-2 border-t-2 border-r-2 rounded-t-lg border-yellow-400">
+        <form method="POST" action="/create" class="flex p-2">
+          <input
+            type="text"
+            name="log"
+            id="log"
+            placeholder="Your Log"
+            class="focus:border-yellow-500 border-2 rounded-lg flex-grow h-8 mr-2 p-1"
+          />
+          <input
+            type="submit"
+            value="Enter"
+            class="bg-yellow-500 rounded-lg text-white cursor-pointer w-16 h-8 font-medium"
+          />
+        </form>
+      </div>
     </div>
   </body>
 </html>
