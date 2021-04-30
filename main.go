@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"html/template"
 	"net/http"
 	"time"
@@ -27,5 +28,7 @@ func main() {
 
 	http.HandleFunc("/", index)
 	http.HandleFunc("/create", create)
+
+	fmt.Printf("server start: localhost:%d\n", 8080)
 	http.ListenAndServe(":8080", nil)
 }
