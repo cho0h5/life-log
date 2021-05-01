@@ -10,31 +10,38 @@
       rel="stylesheet"
     />
   </head>
-  <body class="flex justify-center bg-yellow-50 h-full">
-    <div class="w-8/12 flex flex-col justify-between">
-      <div class="stdout bg-white border-l-2 border-b-2 border-r-2 rounded-b-lg p-2 flex-grow mb-4 border-yellow-400 text-gray-600">
-        <ul>
+  <body class="flex justify-center h-full bg-gray-100">
+    <div class="w-full md:w-8/12 flex flex-col justify-between">
+      <div class="p-2 flex-grow overflow-auto" id="stdout">
+        <ul class="space-y-4 divide-y">
           {{range .}}
-          <li>{{.CreatedAt}} {{.Data}}</li>
+          <li class="p-2">
+            <div class="text-xs text-gray-600">{{.CreatedAt}}</div>
+            <div class="text-base">{{.Data}}</div>
+          </li>
           {{end}}
         </ul>
       </div>
-      <div class="stdin bg-white border-l-2 border-t-2 border-r-2 rounded-t-lg border-yellow-400">
+      <div id="stdin" class="">
         <form method="POST" action="/create" class="flex p-2">
           <input
             type="text"
             name="log"
             id="log"
             placeholder="Your Log"
-            class="focus:border-yellow-500 border-2 rounded-lg flex-grow h-8 mr-2 p-1"
+            class="rounded-md flex-grow h-8 mr-2 p-1"
           />
           <input
             type="submit"
             value="Enter"
-            class="bg-yellow-500 rounded-lg text-white cursor-pointer w-16 h-8 font-medium"
+            class="bg-gray-500 shadow-md rounded-md text-white cursor-pointer w-16 h-8 font-medium hover:bg-gray-600"
           />
         </form>
       </div>
     </div>
+    <script>
+      var divdiv = document.getElementById("stdout");
+      divdiv.scrollTop = divdiv.scrollHeight;
+    </script>
   </body>
 </html>
