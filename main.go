@@ -24,7 +24,7 @@ func create(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	db = initDB(DB_FILE)
+	db = initDB(DB_DSN)
 
 	http.HandleFunc("/", index)
 	http.HandleFunc("/create", create)

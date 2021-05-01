@@ -1,7 +1,7 @@
 package main
 
 import (
-	"gorm.io/driver/sqlite"
+	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
 
@@ -14,10 +14,10 @@ type DB struct {
 	db *gorm.DB
 }
 
-func initDB(file string) *DB {
+func initDB(dsm string) *DB {
 	db := DB{}
 
-	db.db, _ = gorm.Open(sqlite.Open(file), &gorm.Config{})
+	db.db, _ = gorm.Open(mysql.Open(dsm), &gorm.Config{})
 	db.db.AutoMigrate(&Log{})
 
 	return &db
